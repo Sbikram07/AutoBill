@@ -39,7 +39,7 @@ build/
 # ML Model Ignores
 # -------------------------
 /ml model/fruit-and-vegetable-7/
-ml model/runs      # YOLO training outputs
+/ml model/runs      # YOLO training outputs
 /ml model/test.py
 /ml model/dataset.py
 /ml model/uploads/           # uploaded images
