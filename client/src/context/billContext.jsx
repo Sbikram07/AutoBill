@@ -31,10 +31,12 @@ const [downloadTriggered, setDownloadTriggered] = useState(false);
       });
 
       const result = await res.json();
+   
+
       if (res.ok) {
         // Store basic bill info
         setBillData({ _id: result.bill_id });
-        setBillCreated(true);
+     
         setFinished(true);
 
         return { success: true, bill_id: result.bill_id };
