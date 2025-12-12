@@ -38,18 +38,18 @@ build/
 # -------------------------
 # ML Model Ignores
 # -------------------------
-/ml model/fruit-and-vegetable-7/
-/ml model/runs      # YOLO training outputs
-/ml model/test.py
-/ml model/dataset.py
-/ml model/uploads/           # uploaded images
+/ml_model/fruit-and-vegetable-7/
+/ml_model/runs      # YOLO training outputs
+/ml_model/test.py
+/ml_model/dataset.py
+/ml_model/uploads/           # uploaded images
          # uploaded images
-/ml model/**/__pycache__/    # python cache
+/ml_model/**/__pycache__/    # python cache
 __pycache__/
 *.pyc
 
 # YOLO weights (avoid pushing large files)
-/ml model/yolov8n-seg.pt
+/ml_model/yolov8n-seg.pt
 
 # -------------------------
 # OS Specific
