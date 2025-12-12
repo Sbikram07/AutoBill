@@ -19,7 +19,7 @@ AutoBill/
 │
 ├── client/ # Frontend (React + Vite + Tailwind + ShadCN)
 ├── server/ # Backend (Node.js, Express, MongoDB, JWT)
-└── ml model/ # YOLO segmentation ML model + Python FastAPI service
+└── ml_model/ # YOLO segmentation ML model + Python FastAPI service
 ```
 
 ## Quick Setup
@@ -79,7 +79,7 @@ AutoBill/
 
  * Install dependencies:
     ```bash
-    cd ml model
+    cd ml_model
     pip install -r requirements.txt
     ```
 
