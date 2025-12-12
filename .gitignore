@@ -40,7 +40,7 @@ build/
 # -------------------------
 # ML Model Ignores
 ml_model/fruit-and-vegetable-7/
-ml_model/runs/
+ml_model/runs
 ml_model/uploads/
 ml_model/test.py
 ml_model/dataset.py
