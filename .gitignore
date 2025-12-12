@@ -1,0 +1,79 @@
+# -------------------------
+# Global Node Ignored Files
+# -------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.env
+.env.local
+.env.*.local
+
+# Vite cache
+.vite/
+dist/
+build/
+
+# -------------------------
+# Client App Ignores
+# -------------------------
+/client/node_modules/
+/client/dist/
+/client/.vite/
+/client/.DS_Store
+/client/.env
+# -------------------------
+# Server App Ignores
+# -------------------------
+/server/node_modules/
+/server/dist/
+/server/.DS_Store
+/server/.env
+
+# Puppeteer Chromium Downloads
+/server/.local-chromium/
+.serverless/
+
+# -------------------------
+# ML Model Ignores
+# -------------------------
+/ml model/fruit-and-vegetable-7/
+ml model/runs      # YOLO training outputs
+/ml model/test.py
+/ml model/dataset.py
+/ml model/uploads/           # uploaded images
+         # uploaded images
+/ml model/**/__pycache__/    # python cache
+__pycache__/
+*.pyc
+
+# YOLO weights (avoid pushing large files)
+/ml model/yolov8n-seg.pt
+
+# -------------------------
+# OS Specific
+# -------------------------
+.DS_Store
+Thumbs.db
+
+# -------------------------
+# Logs
+# -------------------------
+logs/
+*.log
+logs/*.log
+
+# -------------------------
+# Python Virtual Environments
+# -------------------------
+venv/
+.envrc
+.venv/
+
+# -------------------------
+# Temporary Files
+# -------------------------
+*.tmp
+*.swp
+*.swo
