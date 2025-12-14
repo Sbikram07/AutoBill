@@ -4,7 +4,7 @@ const Bill = require("../model/bill.model");
 
  const createCheckoutSession = async (req, res) => {
   try {
-    console.log(req.body)
+
     const { billId, amount } = req.body;
 
     const session = await stripe.checkout.sessions.create({
