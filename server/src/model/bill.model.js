@@ -48,10 +48,14 @@ const billSchema = new mongoose.Schema(
       default: 0,
     },
 
-    status: {
-      type: String,
-      required: true,
-      default: "pending",
+    payment: {
+      status: {
+        type: String,
+        enum: ["pending", "paid"],
+        default: "pending",
+      },
+      provider: String,
+      paidAt: Date,
     },
   },
   {

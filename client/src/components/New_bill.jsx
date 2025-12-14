@@ -14,7 +14,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useBill } from "../context/BillContext";
 
 const New_bill = () => {
-  const { createBill ,formData,setFormData} = useBill();
+  const { createBill ,formData,setFormData,setFinished} = useBill();
   const [open, setOpen] = useState(false);
 
   // const [formData, setFormData] = useState({
@@ -137,7 +137,10 @@ const New_bill = () => {
         {/* Footer */}
         <DialogFooter>
           <Button
-            onClick={handleCreateBill}
+            onClick={() =>{handleCreateBill()
+              setFinished(false)}
+
+            }
             className="bg-orange-600 hover:bg-orange-700 text-white shadow-md"
           >
             Save Bill

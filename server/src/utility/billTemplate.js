@@ -1,4 +1,7 @@
 module.exports = function billTemplate(bill) {
+  const paymentStatus = bill.payment?.status || "pending";
+  const isPaid = paymentStatus === "paid";
+
   return `
 <!DOCTYPE html>
 <html>
@@ -23,8 +26,29 @@ module.exports = function billTemplate(bill) {
         }
 
         .customer-details {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             font-size: 14px;
+        }
+
+        .payment-status {
+            text-align: center;
+            margin: 15px 0;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+        }
+
+        .paid {
+            background-color: #e6fffa;
+            color: #065f46;
+            border: 1px solid #10b981;
+        }
+
+        .pending {
+            background-color: #fff7ed;
+            color: #9a3412;
+            border: 1px solid #fb923c;
         }
 
         table {
@@ -86,6 +110,16 @@ module.exports = function billTemplate(bill) {
         }
     </div>
 
+    <!-- PAYMENT STATUS -->
+    <div class="payment-status ${isPaid ? "paid" : "pending"}">
+        Payment Status: ${isPaid ? "PAID" : "PENDING"}
+        ${
+          isPaid && bill.payment?.paidAt
+            ? `<br/>Paid On: ${new Date(bill.payment.paidAt).toLocaleString()}`
+            : ""
+        }
+    </div>
+
     <table>
         <thead>
             <tr>
@@ -119,6 +153,13 @@ module.exports = function billTemplate(bill) {
 
     <div class="footer">
         <p>Thank you for shopping with us!</p>
+        <p>
+          ${
+            isPaid
+              ? "Payment successfully received via Stripe"
+              : "Please complete payment to finalize this bill"
+          }
+        </p>
         <p>Powered by AutoBill AI</p>
     </div>
 

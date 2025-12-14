@@ -15,8 +15,9 @@ const Display = () => {
     downloadTriggered,
     setDownloadTriggered,
   } = useBill();
-  const captureDisabled = finished && !downloadTriggered;
-  const uploadDisabled = finished && !downloadTriggered;
+  const captureDisabled = finished ;
+  
+  const uploadDisabled = finished ;
 
   const startCamera = async () => {
     try {
@@ -123,6 +124,7 @@ const Display = () => {
 
         {/* RIGHT BUTTON */}
         <Button
+        disabled={finished}
           onClick={() => {
             setFinished(true);
             setDownloadTriggered(false);

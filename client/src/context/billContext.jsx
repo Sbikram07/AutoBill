@@ -37,7 +37,7 @@ const [downloadTriggered, setDownloadTriggered] = useState(false);
         // Store basic bill info
         setBillData({ _id: result.bill_id });
      
-        setFinished(true);
+        setFinished(false);
 
         return { success: true, bill_id: result.bill_id };
       }
@@ -103,7 +103,7 @@ const [downloadTriggered, setDownloadTriggered] = useState(false);
         customer_phone: "",
         customer_address: "",
       });
-      setBillCreated(false);
+      
       return { success: true };
     } catch (error) {
       console.log(error);

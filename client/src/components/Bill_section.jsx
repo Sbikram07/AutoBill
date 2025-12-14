@@ -1,18 +1,32 @@
-
-
-
 import { useBill } from "@/context/billContext";
 import React from "react";
+
+const baseUrl = import.meta.env.VITE_SERVER_URL;
 
 const Bill_section = () => {
   const {
     formData,
     billData,
-    exportBill,
     finished,
-    downloadTriggered,
-    setDownloadTriggered,
   } = useBill();
+
+  const handleCheckout = async () => {
+    try {
+      const res = await fetch(`${baseUrl}/api/payment/create-payment`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          billId: billData._id,
+          amount: billData.total_amount || 0,
+        }),
+      });
+      const data = await res.json();
+      window.location.href = data.url;
+    } catch (error) {
+      console.log(`checkout error:${error}`);
+    }
+  };
 
   // STEP 1: decide what to show
   const customer_name =
@@ -28,7 +42,7 @@ const Bill_section = () => {
     billData?.customer_address || formData.customer_address || "---";
 
   const products = billData?.products || [];
-const downloadDisabled = !finished;
+  const downloadDisabled = !finished;
   return (
     <div
       className="w-full max-w-xl mx-auto p-5
@@ -100,8 +114,8 @@ const downloadDisabled = !finished;
       </div>
 
       {/* Footer */}
-      <div className="mt-6 flex justify-end">
-        <button
+      <div className="mt-6 flex justify-end gap-4">
+        {/* <button
           disabled={!finished}
           className="px-4 py-2 rounded-md bg-orange-600 hover:bg-orange-700 
                      transition text-white font-semibold shadow-md"
@@ -111,6 +125,14 @@ const downloadDisabled = !finished;
           }}
         >
           Download PDF
+        </button> */}
+        <button
+          disabled={!finished}
+          className="px-4 py-2 rounded-md bg-green-600 hover:bg-green-700 
+                     transition text-white font-semibold shadow-md"
+          onClick={handleCheckout}
+        >
+          Pay Now
         </button>
       </div>
     </div>
@@ -118,4 +140,3 @@ const downloadDisabled = !finished;
 };
 
 export default Bill_section;
-

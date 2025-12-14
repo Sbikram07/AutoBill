@@ -9,6 +9,8 @@ import Verify_pin from "./components/Verify_pin";
 import New_bill from "./components/New_bill";
 import { AuthProvider } from "./context/authContext";
 import { BillProvider } from "./context/billContext";
+import Success from "./pages/Success";
+import Canceled from "./pages/Cancled";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +23,16 @@ const router = createBrowserRouter([
       },{
         path: "login",
         element: <Login/>,
-      },{
+      },
+      {
+        path:"success/:billId",
+        element:<Success/>
+      },
+      {
+        path:"failed/:billId",
+        element:<Canceled/>
+      },
+      {
         path:"verify",
         element:<Verify_pin/>
       },
