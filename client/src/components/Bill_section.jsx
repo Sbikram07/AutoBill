@@ -115,17 +115,7 @@ const Bill_section = () => {
 
       {/* Footer */}
       <div className="mt-6 flex justify-end gap-4">
-        {/* <button
-          disabled={!finished}
-          className="px-4 py-2 rounded-md bg-orange-600 hover:bg-orange-700 
-                     transition text-white font-semibold shadow-md"
-          onClick={() => {
-            exportBill(billData?._id);
-            setDownloadTriggered(true); // re-enable capture + upload
-          }}
-        >
-          Download PDF
-        </button> */}
+       
         <button
           disabled={!finished}
           className="px-4 py-2 rounded-md bg-green-600 hover:bg-green-700 

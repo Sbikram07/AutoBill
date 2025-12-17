@@ -31,7 +31,7 @@ const Verify_pin = () => {
           Enter the 6-digit verification code
         </p>
 
-        {/* OTP PIN Inputs */}
+        {/*  PIN Inputs */}
         <div className="flex justify-center gap-3 mb-6">
           {pin.map((digit, index) => (
             <Input

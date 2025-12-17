@@ -17,13 +17,7 @@ const New_bill = () => {
   const { createBill ,formData,setFormData,setFinished} = useBill();
   const [open, setOpen] = useState(false);
 
-  // const [formData, setFormData] = useState({
-  //   customer_name: "",
-  //   customer_email: "",
-  //   customer_phone: "",
-  //   customer_address: "",
-  // });
-
+  
   // Handle Input Change
   const handleChange = (e) => {
     setFormData({

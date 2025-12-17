@@ -13,23 +13,42 @@ const Success = () => {
 
   const [secondsLeft, setSecondsLeft] = useState(REDIRECT_TIME);
   const hasdownloaded = useRef(false); // single guard for everything
+useEffect(() => {
+  let cancelled = false;
 
-  useEffect(() => {
-   
+  const finalizePayment = async () => {
+    try {
+     
+      const res = await fetch(`${baseUrl}/api/payment/mark-paid/${billId}`, {
+        method: "PATCH",
+        credentials: "include",
+      });
 
-    
-    fetch(`${baseUrl}/api/payment/mark-paid/${billId}`, {
-      method: "PATCH",
-      credentials: "include",
-    });
+      if (!res.ok) {
+        console.error("Failed to mark bill as paid");
+        return;
+      }
 
-    if(!hasdownloaded.current){
-        
-  
-    exportBill(billId);
-    setDownloadTriggered(true);
-    hasdownloaded.current = true;
-    }},[billId, exportBill]);
+      if (cancelled) return;
+
+      
+      if (!hasdownloaded.current) {
+        await exportBill(billId);
+        setDownloadTriggered(true);
+        hasdownloaded.current = true;
+      }
+    } catch (err) {
+      console.error("Payment finalization error:", err);
+    }
+  };
+
+  finalizePayment();
+
+  return () => {
+    cancelled = true;
+  };
+}, [billId]);
+
 
     useEffect(() => {
         if(secondsLeft==0){

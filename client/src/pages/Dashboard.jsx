@@ -25,14 +25,14 @@ const Dashboard = () => {
         <New_bill/>
       </div>
 
-      {/* Layout Wrapper */}
+      {/* Main Row */}
       <div className="grid grid-cols-1 lg:grid-cols-[60%_40%] gap-6 p-3">
-        {/* Left Section */}
+        {/* display Section */}
         <div className="flex justify-center">
           <Display />
         </div>
 
-        {/* Right Section */}
+        {/* Bill  Section */}
         <div className="flex justify-center mr-3">
           <Bill_section />
         </div>

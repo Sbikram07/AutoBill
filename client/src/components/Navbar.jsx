@@ -30,7 +30,7 @@ const Navbar = () => {
         {/* Logo + Brand */}
         <div className="flex items-center gap-3">
           <img
-            src="/logo.png" // FIXED: Vite needs /logo.png, not public\logo.png
+            src="/logo.png" 
             alt="AutoBill Logo"
             className="w-11 h-11 rounded-lg shadow-md"
           />
