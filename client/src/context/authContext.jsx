@@ -1,16 +1,22 @@
 import { browser } from "globals";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext();
 const baseUrl = import.meta.env.VITE_SERVER_URL;
 
 export const AuthProvider = ({ children }) => {
-  const [isLogin, setIsLogin] = useState(localStorage.getItem("isLogin"));
-  isLogin?localStorage.setItem("isLogin",true):localStorage.setItem("isLogin",false)
+  const [isLogin, setIsLogin] = useState(
+    localStorage.getItem("isLogin") === "true"
+  );
 
-  // ===========================
+  
+  useEffect(() => {
+    localStorage.setItem("isLogin", isLogin);
+  }, [isLogin]);
+
+  
   // LOGIN FUNCTION
-  // ===========================
+  
   const login = async (name, admin_key) => {
     try {
         console.log("end point hit")
@@ -32,6 +38,7 @@ export const AuthProvider = ({ children }) => {
       return true; // return success
     } catch (error) {
       console.log("Login Error:", error);
+          setIsLogin(false);
       return false;
     }
   };
@@ -41,24 +48,21 @@ export const AuthProvider = ({ children }) => {
   // ===========================
   const logout = async () => {
     try {
-     const res=await fetch(`${baseUrl}/api/auth/logout`, {
+      const res = await fetch(`${baseUrl}/api/auth/logout`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
       });
       setIsLogin(false);
-      if(res.ok){
-        return true
-      }
-      return false
-      
+      return res.ok;
     } catch (error) {
       console.log("Logout Error:", error);
+      setIsLogin(false);
+      return false;
     }
   };
-
-  // ===========================
+  
   // VERIFY ADMIN PIN
-  // ===========================
+  
   const verifyAdminPin = async (pin) => {
     try {
       const response = await fetch(`${baseUrl}/api/auth/verifyAdminPin`, {

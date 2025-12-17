@@ -39,6 +39,7 @@ const Bill = require("../model/bill.model");
 
 const markBillPaid = async (req, res) => {
   try {
+
     const { billId } = req.params;
 
     const bill = await Bill.findById(billId);

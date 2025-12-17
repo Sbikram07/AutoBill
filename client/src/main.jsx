@@ -11,34 +11,30 @@ import { AuthProvider } from "./context/authContext";
 import { BillProvider } from "./context/billContext";
 import Success from "./pages/Success";
 import Canceled from "./pages/Cancled";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <App />,
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    element: <ProtectedRoute />, 
     children: [
       {
-        path: "dashboard",
-        element: <Dashboard/>,
-      },{
-        path: "login",
-        element: <Login/>,
-      },
-      {
-        path:"success/:billId",
-        element:<Success/>
-      },
-      {
-        path:"failed/:billId",
-        element:<Canceled/>
-      },
-      {
-        path:"verify",
-        element:<Verify_pin/>
+        element: <App />, // layout
+        children: [
+          { path: "/", element: <Dashboard /> },
+          { path: "dashboard", element: <Dashboard /> },
+          { path: "verify", element: <Verify_pin /> },
+          { path: "success/:billId", element: <Success /> },
+          { path: "failed/:billId", element: <Canceled /> },
+        ],
       },
     ],
   },
 ]);
+
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

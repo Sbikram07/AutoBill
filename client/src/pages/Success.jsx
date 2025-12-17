@@ -17,7 +17,7 @@ const Success = () => {
   useEffect(() => {
    
 
-    // 1️⃣ Mark bill as paid
+    
     fetch(`${baseUrl}/api/payment/mark-paid/${billId}`, {
       method: "PATCH",
       credentials: "include",
